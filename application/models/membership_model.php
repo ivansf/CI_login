@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ivan
- * Date: Aug 8, 2010
- * Time: 1:17:50 PM
- */
 
 class Membership_model extends Model {
 	

@@ -3,13 +3,12 @@
 class User extends Controller {
 
 	function index() {
-		
 		$this->load->view('welcome_message');
 	}
 
-	function validate() {
-
+	function validate_json() {
 		$this->load->model('membership_model');
+		$response = array();
 		$query = $this->membership_model->validate();
 		if ($query) {
 			$data = array(
@@ -17,9 +16,13 @@ class User extends Controller {
 				'password' => $this->input->post('password')
 			);
 			$this->session->set_userdata($data);
-			redirect('welcome');
+			$response['user'] = $data;
+			$response['username'] = $this->input->post('username');
+			$response['logged'] = true;
+			print json_encode($response);
 		} else {
-			redirect('welcome');
+			$response['logged'] = false;
+			print json_encode($response);
 		}
 	}
 

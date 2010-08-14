@@ -16,7 +16,6 @@ class Welcome extends Controller {
 			$this->load->view('welcome_logged');
 		} else {
 			$this->load->view('welcome_login');
-			
 		}
 
 		$this->load->view('footer');
