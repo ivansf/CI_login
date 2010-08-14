@@ -6,6 +6,12 @@ class User extends Controller {
 		$this->load->view('welcome_message');
 	}
 
+
+	/**
+	* validate_json function
+	*
+	* @return json encoded array
+	*/
 	function validate_json() {
 		$this->load->model('membership_model');
 		$response = array();
@@ -26,6 +32,11 @@ class User extends Controller {
 		}
 	}
 
+	/**
+	* Removes the session and redirects to the homepage.
+	*
+	* @return void
+	*/
 	function logout() {
 		$this->session->sess_destroy();
 		$this->index();
