@@ -8,17 +8,12 @@ class Welcome extends Controller {
 	
 	function index()
 	{
-		$this->load->helper('form');
-
-		$this->load->view('header');
-		$username = $this->session->userdata('username');
-		if ($username) {
-			$this->load->view('welcome_logged');
+		$data['username'] = $this->session->userdata('username');
+		if ($data['username']) {
+			$this->load->view('welcome_logged', $data);
 		} else {
 			$this->load->view('welcome_login');
 		}
-
-		$this->load->view('footer');
 	}
 }
 

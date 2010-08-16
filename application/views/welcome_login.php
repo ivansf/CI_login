@@ -1,3 +1,4 @@
+<?php $this->load->view('header'); ?>
 
 <h1>Please Login</h1>
 
@@ -9,3 +10,4 @@
 
 <?php echo form_close(); ?>
 
+<?php $this->load->view('footer'); ?>
