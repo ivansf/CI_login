@@ -14,11 +14,20 @@ class Membership_model extends Model {
 		}
 	}
 	
-	function userExists($email) {
+	function user_exists($user) {
+		$this->db->where('username', $user);
+		$query = $this->db->get('membership');
+		if ($query->num_rows >= 1)
+			return true;
+		return false;
+	}
+	
+	function email_exists($email) {
 		$this->db->where('email', $email);
 		$query = $this->db->get('membership');
 		if ($query->num_rows >= 1)
 			return true;
 		return false;
 	}
+	
 }

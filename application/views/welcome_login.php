@@ -10,4 +10,6 @@
 
 <?php echo form_close(); ?>
 
+<?php echo anchor('user/register', 'Create a new account'); ?>
+
 <?php $this->load->view('footer'); ?>

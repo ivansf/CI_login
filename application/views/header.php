@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title><?php if(isset($title)): print $title; else: print "Website"; endif; ?></title>
+		<link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" title="Main" charset="utf-8"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function(){

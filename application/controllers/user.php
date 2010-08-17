@@ -61,42 +61,53 @@ class User extends Controller {
 	*/
 	function register() {
 		
-		$error = $this->session->userdata('error');
-		if ($error != "")
-			$data['error'] = $error;
-		
-		$this->session->unset_userdata('error');
+		$this->load->library('form_validation');
 		$data['title'] = "User registration page";
-		$this->load->view('user/register', $data);
+		
+		// validation rules
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('username', 'Username', 'required|min_length[4]|max_length[20]|callback_user_check');
+		$this->form_validation->set_rules('password', 'Password', 'required|matches[password2]|min_length[4]|max_length[20]');
+		$this->form_validation->set_rules('password2', 'password confirmation', 'required');
+		$this->form_validation->set_rules('email', 'E-mail', 'required|callback_email_check');
+		
+		
+		if ($this->form_validation->run() == FALSE) {
+			// validation fails, we display the form again with errors.
+			$this->load->view('user/register', $data);
+		} else {
+			$this->load->view('user/created', $data);
+		}
+					
 	}
 	
 	/**
-	* Validates registration. If the submission is correct, it should create the user
-	* and tag it as non-active.
+	* Checks if a user exists with the provided username
 	*
-	* @return void
+	* @return boolean
 	*/
-	function register_validate(){
+	function user_check($str) {
 		$this->load->model('membership_model');
-		
-		// validating the email
-		if($this->membership_model->userExists($this->input->post('email'))){
-			$data['error'] = "Email already been used.";
-			$this->session->set_userdata($data);
+		if ($this->membership_model->user_exists($str)) {
+			$this->form_validation->set_message('user_check', 'Username is already in use.');
+			return false;
+		} else {
+			return true;
 		}
-		
-		// making sure passwords match
-		if ($this->input->post('password') != $this->input->post('password2')){
-			$data['error'] = "Passwords won't match";
-			$this->session->set_userdata($data);
-		}
-		
-		if (!isset($data['error'])) {
-			redirect('user/created');
-		}
-		redirect('user/register');
-		
 	}
-	
 
+	/**
+	* Checks if a user exists with the provided email address
+	*
+	* @return boolean
+	*/
+	function email_check($str) {
+		$this->load->model('membership_model');
+		if ($this->membership_model->email_exists($str)) {
+			$this->form_validation->set_message('email_check', 'Email is already in use.');
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
