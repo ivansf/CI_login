@@ -37,10 +37,10 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "root";
+$db['default']['hostname'] = "localhost:/tmp/mysql/jolanda.sock";
+$db['default']['username'] = "jolanda";
 $db['default']['password'] = "root";
-$db['default']['database'] = "ci_login";
+$db['default']['database'] = "RUyAFhNr";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
