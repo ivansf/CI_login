@@ -38,9 +38,9 @@ $active_group = "default";
 $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost:/tmp/mysql/jolanda.sock";
-$db['default']['username'] = "jolanda";
-$db['default']['password'] = "root";
-$db['default']['database'] = "RUyAFhNr";
+$db['default']['username'] = "morgan";
+$db['default']['password'] = "RUyAFhNr";
+$db['default']['database'] = "jolanda";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
