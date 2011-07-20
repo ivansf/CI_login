@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://cilogin.local/";
+//$config['base_url']	= "http://cilogin.local/";
 
 /*
 |--------------------------------------------------------------------------
